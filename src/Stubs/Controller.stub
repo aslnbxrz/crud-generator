@@ -1,0 +1,65 @@
+<?php
+
+namespace App\Http\Controllers{{namespace}};
+
+use App\Http\Controllers\Controller;
+use App\Models\{{modelName}};
+use Illuminate\Http\Request;
+use Aslnbxrz\CrudGenerator\Traits\FilterTrait;
+
+class {{modelName}}Controller extends Controller
+{
+    use FilterTrait;
+
+    public $modelClass = {{modelName}}::class;
+
+    public function clientIndex(Request $request)
+    {
+        $query = $this->queryFilter($request);
+        return $query->paginate($request->get('per_page'));
+    }
+
+    public function adminIndex(Request $request)
+    {
+        $query = $this->queryFilter($request);
+        return $query->paginate($request->get('per_page'));
+    }
+
+    public function clientShow(Request $request, {{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        $query = $this->queryFilter($request);
+        $query->where('id', ${{modelNameSingularLowerCase}}->id);
+        return $query->first();
+    }
+
+    public function adminShow(Request $request, {{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        $query = $this->queryFilter($request);
+        $query->where('id', ${{modelNameSingularLowerCase}}->id);
+        return $query->first();
+    }
+
+    public function create(Request $request)
+    {
+        $request->validate($this->modelClass::rules());
+        $model = $this->modelClass::create($request->all());
+        $query = $this->queryFilter($request);
+        $query->where('id', $model->id);
+        return $query->first();
+    }
+
+    public function update(Request $request, {{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        $request->validate($this->modelClass::rules());
+        ${{modelNameSingularLowerCase}}->update($request->all());
+        $query = $this->queryFilter($request);
+        $query->where('id', ${{modelNameSingularLowerCase}}->id);
+        return $query->first();
+    }
+
+    public function destroy({{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        ${{modelNameSingularLowerCase}}->delete();
+        return ["status" => "success"];
+    }
+}

@@ -1,0 +1,24 @@
+/*--------------------------------------------------------------------------------
+    {{name}} ROUTES  => START
+--------------------------------------------------------------------------------*/
+Route::prefix("{{version}}")->group(function () {
+    Route::controller(\App\Http\Controllers\{{namespace}}\{{name}}Controller::class)->group(function () {
+        Route::middleware(["auth:api", "scope:admin"])->group(function () {
+            Route::prefix("admin/{{routeName}}")->group(function () {
+                Route::get("/", "adminIndex");
+                Route::post("/", "create");
+                Route::put("{{model_name}}", "update")->where("{{model_name}}", "[0-9]+");
+                Route::get("{{model_name}}", "adminShow")->where("{{model_name}}", "[0-9]+");
+                Route::delete("{{model_name}}", "destroy")->where("{{model_name}}", "[0-9]+");
+            });
+
+            Route::prefix("{{routeName}}")->group(function () {
+                Route::get("/", "clientIndex");
+                Route::get("{{model_name}}", "clientShow")->where("{{model_name}}", "[0-9]+");
+            });
+        });
+    });
+});
+/*--------------------------------------------------------------------------------
+    {{name}} ROUTES  => END
+--------------------------------------------------------------------------------*/

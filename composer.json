@@ -1,0 +1,23 @@
+{
+    "name": "aslnbxrz/crud-generator",
+    "description": "Just Crud Generator",
+    "type": "package",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Aslnbxrz\\CrudGenerator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "aslnbxrz",
+            "email": "bexruz.aslonov1@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0|^8.1",
+        "laravel/passport": "^10.0",
+        "spatie/laravel-query-builder": "^4.0.3",
+        "doctrine/dbal": "^3.5"
+    }
+}
