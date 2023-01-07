@@ -18,6 +18,13 @@
         "php": "^8.0|^8.1",
         "laravel/passport": "^10.0",
         "spatie/laravel-query-builder": "^4.0.3",
-        "doctrine/dbal": "^3.5"
+        "doctrine/dbal": "^3.5.2"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aslnbxrz\\CrudGenerator\\CrudGeneratorServiceProvider"
+            ]
+        }
     }
 }

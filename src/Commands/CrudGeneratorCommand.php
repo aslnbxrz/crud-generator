@@ -36,8 +36,6 @@ class CrudGeneratorCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return string
      */
     public function handle(): void
     {
